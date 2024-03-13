@@ -1,0 +1,7 @@
+.register_option {
+    width: 25%;
+    height: 10%;
+    margin: 50px;
+    align-items: center;
+    border: 1px solid black;	
+}
