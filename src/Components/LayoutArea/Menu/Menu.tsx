@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import Role from "../../../Models/Role";
 import { authStore } from "../../../Redux/AuthState";
 import "./Menu.css";
+import intializerService from "../../../Service/IntializerService";
 
 function Menu(): JSX.Element {
     const [role,setRole] = useState<string>();
@@ -12,14 +13,18 @@ function Menu(): JSX.Element {
         
         setRole(authStore.getState().authorities);
         setId(authStore.getState().id);
+        
+
 
        const unsubscribe = authStore.subscribe(()=>{
         setRole(authStore.getState().authorities);
         setId(authStore.getState().id as number);
+
        });
 
        return ()=>{
         unsubscribe();
+
     };
     },[]);
 
@@ -46,7 +51,7 @@ function Menu(): JSX.Element {
             <NavLink to={"/company/" + id}>See my details</NavLink>
             </>}
             { 
-            id ===0 && role === Role.Admin && 
+            id === 0 && role === Role.Admin &&
             <>
             <span>Admin Menu</span>
             <NavLink to="/admin/companies">See Companies</NavLink>

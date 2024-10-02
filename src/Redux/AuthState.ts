@@ -58,7 +58,6 @@ export function authReducer(currentState = new AuthState(), action: AuthAction):
             newState.id = container.id;
             newState.name = container.name;
 
-
             localStorage.setItem("name",newState.name);
             localStorage.setItem("token",newState.token);
             localStorage.setItem("authorities",newState.authorities);
@@ -66,18 +65,19 @@ export function authReducer(currentState = new AuthState(), action: AuthAction):
 
             break;
     
-    case AuthActionType.Logout:
-        newState.token = null;
-        newState.authorities = null;
-        newState.id = null;
-        newState.name = null;
-        localStorage.removeItem("token");
-        localStorage.removeItem("authorities");
-        localStorage.removeItem("id");
-        localStorage.removeItem("name");
-        break;
+        case AuthActionType.Logout:
+            newState.token = null;
+            newState.authorities = null;
+            newState.id = null;
+            newState.name = null;
 
-    default: break;
+            localStorage.removeItem("token");
+            localStorage.removeItem("authorities");
+            localStorage.removeItem("id");
+            localStorage.removeItem("name");
+            break;
+
+        default: break;
     }
     return newState;
 }

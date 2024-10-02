@@ -3,13 +3,16 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { authStore } from "../Redux/AuthState";
 import notificationService from "../Service/NotificationService";
+import intializerService from "../Service/IntializerService";
 
     function useForceLogin() {
 
         const navigate = useNavigate();
     
         useEffect(() => {
-            
+            if (!intializerService.check_data()){
+                intializerService.fillDatabase()
+            }
             const token = authStore.getState().token;
             if(token){
                 const container:{exp: number} = jwtDecode(token);

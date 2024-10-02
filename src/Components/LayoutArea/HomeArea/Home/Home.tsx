@@ -1,6 +1,9 @@
 import './Home.css'
 import homeCoupon from "../../../../Assets/home_coupon.jpeg";
+
 function Home(): JSX.Element {
+
+
   return (
     <div className="Home">
       <div className='image'>
